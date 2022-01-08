@@ -9,8 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            
+            VStack {
+                if UserDefaults.standard.user != nil {
+                    CarsListView()
+                } else {
+                    LoginView(viewModel: LoginViewModel())
+                }
+            }
+        }
+       
     }
 }
 
