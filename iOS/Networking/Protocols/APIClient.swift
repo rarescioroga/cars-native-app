@@ -155,14 +155,14 @@ extension APIClient {
         headers["Content-Type"] = "multipart/form-data"
         
         AF.upload(multipartFormData: { multiPart in
-            for (key, value) in route.parameters ?? [:] {
-                
-                multiPart.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
-            }
+//            for (key, value) in route.parameters ?? [:] {
+//
+//                multiPart.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
+//            }
             if let imgData = image {
                 multiPart.append(imgData, withName: "imageUrl", fileName: "car_img.jpg", mimeType: "image/jpg")
             }
-        },to: "http://localhost:3005/api/car/", method: .post, headers: HTTPHeaders(headers))
+        },to: "http://localhost:3005/api/car/upload", method: .post, headers: HTTPHeaders(headers))
 //        with: route)
         .uploadProgress(queue: .main, closure: { progress in
             //Current upload progress of file

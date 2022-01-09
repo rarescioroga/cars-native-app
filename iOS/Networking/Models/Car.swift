@@ -17,6 +17,7 @@ struct Car: Codable {
     let imageUrl: String?
     let userId: String?
     let coordinates: Coordinates?
+    var isModified: Bool?
     
     private enum CodingKeys : String, CodingKey {
         case id = "_id"
@@ -28,6 +29,7 @@ struct Car: Codable {
         case imageUrl = "imageUrl"
         case userId = "userId"
         case coordinates = "coordinates"
+        case isModified = " "
     }
 }
 

@@ -33,7 +33,6 @@ class LoginRepositoryImpl: LoginRepository, APIClient {
             }
         }
     }
-
 }
 
 struct EmptyResponse: Decodable { }

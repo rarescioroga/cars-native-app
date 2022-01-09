@@ -23,7 +23,6 @@ struct CarItemView: View {
     var body: some View {
         
         VStack {
-            
             if let imageData = self.data {
                 Image(uiImage: UIImage(data: imageData) ?? .checkmark)
                     .resizable()

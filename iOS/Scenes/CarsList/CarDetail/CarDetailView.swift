@@ -7,10 +7,14 @@
 
 import SwiftUI
 import MapKit
+import UserNotifications
 
 struct CarDetailView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: CarDetailViewModel
+    @ObservedObject private var internetViewModel: InternetAlertViewModel = InternetAlertViewModel()
+
     @State private var imagePickerType: UIImagePickerController.SourceType = .camera
     
     @State var showImagePicker: Bool = false
@@ -52,22 +56,37 @@ struct CarDetailView: View {
                     } label: {
                         Text("Add Image")
                             .font(.headline)
-                        
                     }
                     
                 }
                 
-                TextField("Brand", text: $viewModel.brand)
-                    .foregroundColor(.black)
-                    .padding(.top, 24 )
-                
-                TextField("Model", text: $viewModel.model)
-                    .foregroundColor(.black)
-                
-                TextField("Number of Owners", text: $viewModel.nrOwners)
-                    .keyboardType(.numberPad)
-                    .foregroundColor(.black)
-                
+                VStack(alignment: .leading) {
+                    Text("Brand")
+                        .foregroundColor(.gray)
+                        .font(.subheadline)
+                    
+                    TextField("Brand", text: $viewModel.brand)
+                        .foregroundColor(.black)
+                    
+                    Text("Model")
+                        .foregroundColor(.gray)
+                        .font(.subheadline)
+                    
+                    TextField("Model", text: $viewModel.model)
+                        .foregroundColor(.black)
+                    
+                    
+                    Text("Number of Owners")
+                        .foregroundColor(.gray)
+                        .font(.subheadline)
+                    
+                    TextField("Number of Owners", text: $viewModel.nrOwners)
+                        .keyboardType(.numberPad)
+                        .foregroundColor(.black)
+                }
+                .padding(.top, 24 )
+
+               
                 DatePicker("Registration date", selection: $viewModel.date,
                            displayedComponents: .date)
                 
@@ -83,33 +102,41 @@ struct CarDetailView: View {
                     MapPin(coordinate: pin.location.coordinate, tint: .red)
                     
                 }
-                .frame(width: 400, height: 300)
+                .frame(width: 300, height: 240)
                 
-                
-                //                Map(coordinateRegion: $region, showsUserLocation: true,
-                //                    userTrackingMode: .constant(.follow),
-                //                    annotationItems: [AnnotatedItem(name: "Times Square", coordinate: .init(latitude: self.userLatitude, longitude:  self.userLongitude))]) { item in
-                //                    MapMarker(coordinate: item.coordinate, tint: .red)
-                //                }
                 
                 Spacer()
                 
                 Button {
-                    self.viewModel.performAction()
+                    self.viewModel.performAction(isDisconnected: internetViewModel.isDisconnected)
                 } label: {
                     Text(viewModel.buttonTitle)
                         .font(.headline)
                 }
                 
-                
+                Button {
+                    self.createLocalNotification()
+                } label: {
+                    Text("Create Notification")
+                        .font(.headline)
+                }
+
             }
+            .padding(.horizontal, 24)
+
         }
-        .padding(.horizontal, 24)
         .padding(.top, 16)
         .onReceive(imageLoader.didChange, perform: { data in
             self.data = data
         })
+        .onReceive(viewModel.command) { (command) in
+            switch command {
+                case .didAddCarData:
+                    self.presentationMode.wrappedValue.dismiss()
+            }
+        }
         .onAppear{
+            self.requestPNPermissions()
             manager.delegate = managerDelegate
         }
         .navigationBarTitle("Car details".uppercased())
@@ -117,10 +144,12 @@ struct CarDetailView: View {
             ActionSheet(title: Text("Upload an attachment"),
                         message: Text("Please select an image source"), buttons: [
                             .default(Text("Library")) {
+                                
                                 self.imagePickerType = .photoLibrary
                                 self.showImagePicker = true
                             },
                             .default(Text("Camera")) {
+                                self.createLocalNotification()
                                 self.imagePickerType = .camera
                                 self.showImagePicker = true
                             },
@@ -131,6 +160,28 @@ struct CarDetailView: View {
                 self.viewModel.sendImage(imageData: image.jpegData(compressionQuality: 0.7))
             }
         }
+    }
+    
+    private func requestPNPermissions() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("success")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func createLocalNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "New car added"
+        content.subtitle = "The car details were successfully added!"
+        content.sound = .default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 4, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
     }
 }
 

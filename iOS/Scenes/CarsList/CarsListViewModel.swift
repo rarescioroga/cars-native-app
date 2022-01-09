@@ -19,7 +19,7 @@ class CarsListViewModel: ObservableObject {
     // MARK: - Lifecycle
     init(repository: CarsListRepository = CarsListRepositoryImpl()) {
         self.repository = repository
-//        self.getAllCars()
+        self.updateWithLocalData()
     }
     
     func getAllCars() {
@@ -29,10 +29,24 @@ class CarsListViewModel: ObservableObject {
             case .failure(let error):
                 self.alertMessage = error.message
                 self.showsAlert = true
-                
+
             case .success(let response):
+                UserDefaults.standard.setCars(response)
                 self.carList = response
             }
         }
-    }    
+    }
+    
+    func updateWithLocalData() {
+        self.repository.updateCars { result in
+            switch result {
+            case .failure(let error):
+                self.alertMessage = error.message
+                self.showsAlert = true
+
+            case .success(let response):
+                print("succcess")
+            }
+        }
+    }
 }

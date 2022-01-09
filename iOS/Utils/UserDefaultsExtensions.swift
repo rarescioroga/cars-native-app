@@ -13,6 +13,7 @@ extension UserDefaults {
     struct Keys {
         static let user = "user_key"
         static let token = "token_key"
+        static let carsList = "cars_list_key"
 
     }
     
@@ -35,6 +36,26 @@ extension UserDefaults {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(unwrappedUser) {
             set(encoded, forKey: Keys.user)
+        }
+    }
+    
+    var cars: [Car]? {
+        if let userData = object(forKey: Keys.carsList) as? Data {
+            let decoder = JSONDecoder()
+            return try? decoder.decode([Car].self, from: userData)
+        } else {
+            return nil
+        }
+    }
+    
+    func setCars(_ cars: [Car]?) {
+        guard let unwrappedCars = cars else {
+            removeObject(forKey: Keys.carsList)
+            return
+        }
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(unwrappedCars) {
+            set(encoded, forKey: Keys.carsList)
         }
     }
     

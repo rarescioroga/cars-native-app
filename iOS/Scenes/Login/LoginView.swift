@@ -15,6 +15,10 @@ struct LoginView: View {
         
         VStack(spacing: 40) {
             
+            Text("Cars App")
+                .font(.title)
+                .foregroundColor(.green)
+            
             TextField("Username", text: $viewModel.username)
                 .autocapitalization(.none)
             
@@ -26,10 +30,16 @@ struct LoginView: View {
             }, label: {
                 Text("Login")
             })
-            .background(Color.white)
         }
+        .background(Color.white)
         .padding(.horizontal, 30)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onReceive(viewModel.command) { (command) in
+            switch command {
+                case .showMainView:
+                    self.showMainDashboard()
+            }
+        }
     }
 }
 
@@ -38,3 +48,14 @@ struct LoginView_Previews: PreviewProvider {
         LoginView(viewModel: LoginViewModel())
     }
 }
+
+// MARK: - Navigation
+
+extension LoginView {
+    
+    func showMainDashboard() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.loadNewRoot(rootView: AnyView(CarsListView()))
+    }
+}
+

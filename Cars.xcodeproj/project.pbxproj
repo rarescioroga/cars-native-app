@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		1EA499EEA524996C9C70BBC4 /* Pods_Cars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E6F44CA283B6FBB066388B /* Pods_Cars.framework */; };
 		6FD6D81B7D5066F596585290 /* Pods_Cars__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D2AE98BFDC98ECFEFFF60FA /* Pods_Cars__macOS_.framework */; };
+		BCBB4DCF2789E90700D1F233 /* NoInternetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBB4DCE2789E90700D1F233 /* NoInternetModifier.swift */; };
+		BCBB4DD5278B22B100D1F233 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBB4DD4278B22B100D1F233 /* AppDelegate.swift */; };
+		BCBB4DD7278B23EC00D1F233 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBB4DD6278B23EC00D1F233 /* LaunchScreen.storyboard */; };
+		BCBB4DD9278B282000D1F233 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBB4DD8278B282000D1F233 /* Main.storyboard */; };
 		CE9121DB27844CF7000F3EFF /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121DA27844CF7000F3EFF /* UserDefaultsExtensions.swift */; };
-		CE9121E127845112000F3EFF /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121E027845112000F3EFF /* InitialViewController.swift */; };
-		CE9121E327845149000F3EFF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121E227845149000F3EFF /* SceneDelegate.swift */; };
-		CE9121E527845385000F3EFF /* CarsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121E427845385000F3EFF /* CarsApp.swift */; };
 		CE9121E727847123000F3EFF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121E627847123000F3EFF /* ImageLoader.swift */; };
 		CE9121EA2784753E000F3EFF /* CarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121E92784753E000F3EFF /* CarDetailView.swift */; };
 		CE9121EC27847551000F3EFF /* CarDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121EB27847551000F3EFF /* CarDetailViewModel.swift */; };
@@ -20,8 +21,6 @@
 		CE9121F027848AE2000F3EFF /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121EF27848AE2000F3EFF /* ImagePickerView.swift */; };
 		CE9121F227848D3F000F3EFF /* ImageSavingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121F127848D3F000F3EFF /* ImageSavingProtocol.swift */; };
 		CE9121F42784B0CE000F3EFF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9121F32784B0CE000F3EFF /* LocationManager.swift */; };
-		CE9CD6F8275CCB1600FFBE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9CD6E4275CCB1400FFBE9B /* ContentView.swift */; };
-		CE9CD6F9275CCB1600FFBE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9CD6E4275CCB1400FFBE9B /* ContentView.swift */; };
 		CE9CD6FA275CCB1600FFBE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9CD6E5275CCB1600FFBE9B /* Assets.xcassets */; };
 		CE9CD6FB275CCB1600FFBE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9CD6E5275CCB1600FFBE9B /* Assets.xcassets */; };
 		CE9CD70A275CCE8500FFBE9B /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9CD707275CCE8500FFBE9B /* APIClient.swift */; };
@@ -47,10 +46,11 @@
 		4CB44C1E0410A118FC088264 /* Pods-Cars (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cars (macOS).release.xcconfig"; path = "Target Support Files/Pods-Cars (macOS)/Pods-Cars (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		9843A118DF0EE8E30CF7535C /* Pods-Cars (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cars (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Cars (macOS)/Pods-Cars (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		9BC089C9CABED679226031C4 /* Pods-Cars (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cars (iOS).release.xcconfig"; path = "Target Support Files/Pods-Cars (iOS)/Pods-Cars (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		BCBB4DCE2789E90700D1F233 /* NoInternetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetModifier.swift; sourceTree = "<group>"; };
+		BCBB4DD4278B22B100D1F233 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BCBB4DD6278B23EC00D1F233 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BCBB4DD8278B282000D1F233 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE9121DA27844CF7000F3EFF /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
-		CE9121E027845112000F3EFF /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		CE9121E227845149000F3EFF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE9121E427845385000F3EFF /* CarsApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarsApp.swift; sourceTree = "<group>"; };
 		CE9121E627847123000F3EFF /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		CE9121E92784753E000F3EFF /* CarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailView.swift; sourceTree = "<group>"; };
 		CE9121EB27847551000F3EFF /* CarDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewModel.swift; sourceTree = "<group>"; };
@@ -58,13 +58,10 @@
 		CE9121EF27848AE2000F3EFF /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		CE9121F127848D3F000F3EFF /* ImageSavingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSavingProtocol.swift; sourceTree = "<group>"; };
 		CE9121F32784B0CE000F3EFF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		CE9CD6E4275CCB1400FFBE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CE9CD6E5275CCB1600FFBE9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9CD6EA275CCB1600FFBE9B /* Cars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9CD6ED275CCB1600FFBE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9CD6F2275CCB1600FFBE9B /* Cars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cars.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE9CD6F4275CCB1600FFBE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE9CD6F5275CCB1600FFBE9B /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		CE9CD707275CCE8500FFBE9B /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		CE9CD708275CCE8500FFBE9B /* APIConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		CE9CD709275CCE8500FFBE9B /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -142,7 +139,6 @@
 			children = (
 				CE9CD6E2275CCB1400FFBE9B /* Shared */,
 				CE9CD6EC275CCB1600FFBE9B /* iOS */,
-				CE9CD6F3275CCB1600FFBE9B /* macOS */,
 				CE9CD6EB275CCB1600FFBE9B /* Products */,
 				51C7DA272F1780FD0965772F /* Pods */,
 				7109855AA47221BA688A9820 /* Frameworks */,
@@ -152,8 +148,6 @@
 		CE9CD6E2275CCB1400FFBE9B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				CE9121E427845385000F3EFF /* CarsApp.swift */,
-				CE9CD6E4275CCB1400FFBE9B /* ContentView.swift */,
 				CE9CD6E5275CCB1600FFBE9B /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -171,23 +165,13 @@
 		CE9CD6EC275CCB1600FFBE9B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				BCBB4DD4278B22B100D1F233 /* AppDelegate.swift */,
 				CE9CD71F275CDC8700FFBE9B /* Utils */,
 				CE9CD705275CCBEC00FFBE9B /* Scenes */,
 				CE9CD704275CCBDF00FFBE9B /* Networking */,
 				CE9CD6ED275CCB1600FFBE9B /* Info.plist */,
-				CE9121E027845112000F3EFF /* InitialViewController.swift */,
-				CE9121E227845149000F3EFF /* SceneDelegate.swift */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		CE9CD6F3275CCB1600FFBE9B /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				CE9CD6F4275CCB1600FFBE9B /* Info.plist */,
-				CE9CD6F5275CCB1600FFBE9B /* macOS.entitlements */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 		CE9CD704275CCBDF00FFBE9B /* Networking */ = {
@@ -203,6 +187,8 @@
 		CE9CD705275CCBEC00FFBE9B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				BCBB4DD6278B23EC00D1F233 /* LaunchScreen.storyboard */,
+				BCBB4DD8278B282000D1F233 /* Main.storyboard */,
 				CE9CD714275CDA9B00FFBE9B /* CarsList */,
 				CE9CD713275CDA9300FFBE9B /* Login */,
 			);
@@ -268,6 +254,7 @@
 				CE9121EF27848AE2000F3EFF /* ImagePickerView.swift */,
 				CE9121F127848D3F000F3EFF /* ImageSavingProtocol.swift */,
 				CE9121F32784B0CE000F3EFF /* LocationManager.swift */,
+				BCBB4DCE2789E90700D1F233 /* NoInternetModifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -353,6 +340,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCBB4DD9278B282000D1F233 /* Main.storyboard in Resources */,
+				BCBB4DD7278B23EC00D1F233 /* LaunchScreen.storyboard in Resources */,
 				CE9CD6FA275CCB1600FFBE9B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,9 +425,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9CD6F8275CCB1600FFBE9B /* ContentView.swift in Sources */,
+				BCBB4DCF2789E90700D1F233 /* NoInternetModifier.swift in Sources */,
 				CE9CD725275CE24700FFBE9B /* CarItemView.swift in Sources */,
 				CE9121EC27847551000F3EFF /* CarDetailViewModel.swift in Sources */,
+				BCBB4DD5278B22B100D1F233 /* AppDelegate.swift in Sources */,
 				CE9121DB27844CF7000F3EFF /* UserDefaultsExtensions.swift in Sources */,
 				CE9CD729275CE3CC00FFBE9B /* CarsListRepository.swift in Sources */,
 				CE9CD70F275CCEE000FFBE9B /* APIRouter.swift in Sources */,
@@ -454,13 +444,10 @@
 				CE9CD71E275CDC0400FFBE9B /* AppError.swift in Sources */,
 				CE9CD716275CDAAE00FFBE9B /* LoginView.swift in Sources */,
 				CE9121E727847123000F3EFF /* ImageLoader.swift in Sources */,
-				CE9121E327845149000F3EFF /* SceneDelegate.swift in Sources */,
-				CE9121E127845112000F3EFF /* InitialViewController.swift in Sources */,
 				CE9CD723275CE23A00FFBE9B /* CarsListView.swift in Sources */,
 				CE9121EA2784753E000F3EFF /* CarDetailView.swift in Sources */,
 				CE9CD70C275CCE8600FFBE9B /* AuthenticationService.swift in Sources */,
 				CE9121EE2784755C000F3EFF /* CarDetailRepository.swift in Sources */,
-				CE9121E527845385000F3EFF /* CarsApp.swift in Sources */,
 				CE9CD718275CDABE00FFBE9B /* LoginViewModel.swift in Sources */,
 				CE9121F42784B0CE000F3EFF /* LocationManager.swift in Sources */,
 			);
@@ -470,7 +457,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9CD6F9275CCB1600FFBE9B /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,7 +581,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CH4T7CZU9G;
+				DEVELOPMENT_TEAM = UB9V8XX89A;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -607,7 +593,7 @@
 				PRODUCT_NAME = Cars;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -618,7 +604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CH4T7CZU9G;
+				DEVELOPMENT_TEAM = UB9V8XX89A;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -630,7 +616,7 @@
 				PRODUCT_NAME = Cars;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

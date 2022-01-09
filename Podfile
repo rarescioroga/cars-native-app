@@ -6,6 +6,7 @@ use_frameworks!
 
 def shared_pods
   pod 'Alamofire'
+  pod 'ExytePopupView'
 end
 
 target 'Cars' do

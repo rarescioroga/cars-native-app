@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 class CarDetailViewModel: ObservableObject, ImageSavingProtocol {
     
     @Published var car: Car?
+    let command = PassthroughSubject<Command, Never>()
     
     @Published var alertMessage: String = ""
     @Published var showsAlert: Bool = false
@@ -21,13 +23,10 @@ class CarDetailViewModel: ObservableObject, ImageSavingProtocol {
     @Published var isRepainted: Bool = false
     
     @Published var imageData: Data?
-
-    
-//    @Published var coordinates: Coordinates =
     @Published var buttonTitle: String = ""
-
+    
     private var repository: CarDetailRepository
-
+    
     // MARK: - Lifecycle
     init(car: Car? = nil, repository: CarDetailRepository = CarDetailRepositoryImpl()) {
         self.repository = repository
@@ -48,32 +47,42 @@ class CarDetailViewModel: ObservableObject, ImageSavingProtocol {
         }
     }
     
-    func performAction() {
+    func performAction(isDisconnected: Bool) {
         if self.car == nil {
-            self.createCar()
+            self.createCar(isDisconnected: isDisconnected)
         } else {
-            self.updateCar()
+            self.updateCar(isDisconnected: isDisconnected)
         }
     }
-   
-    func updateCar() {
+    
+    func updateCar(isDisconnected: Bool) {
         guard let existingCarId = self.car?.id, let newCar = self.car else {
             return
         }
+        let car = Car(id: existingCarId,
+                      brand: self.brand,
+                      model: self.model,
+                      firstRegisterDate: self.date,
+                      nrOfOwners: Int(self.nrOwners) ?? 0,
+                      isRepainted: self.isRepainted,
+                      imageUrl: nil,
+                      userId: nil,
+                      coordinates: nil)
         
-        self.repository.updateCar(car: newCar, data: self.imageData ?? nil) { result in
+        self.repository.updateCar(isDisconnected: isDisconnected, car: car, data: self.imageData ?? nil) { result in
             switch result {
-            case .failure(let error):
-                self.alertMessage = error.message
-                self.showsAlert = true
-                
-            case .success(let response):
-                self.car = response
+                case .failure(let error):
+                    self.alertMessage = error.message
+                    self.showsAlert = true
+                    
+                case .success(let response):
+                    self.car = response
+                    self.command.send(.didAddCarData)
             }
         }
     }
     
-    func createCar() {
+    func createCar(isDisconnected: Bool) {
         let car = Car(id: nil,
                       brand: self.brand,
                       model: self.model,
@@ -84,14 +93,16 @@ class CarDetailViewModel: ObservableObject, ImageSavingProtocol {
                       userId: nil,
                       coordinates: nil)
         
-        self.repository.createCar(car: car, data: self.imageData ?? nil) { result in
+        self.repository.createCar(isDisconnected: isDisconnected, car: car, data: self.imageData ?? nil) { result in
             switch result {
-            case .failure(let error):
-                self.alertMessage = error.message
-                self.showsAlert = true
-                
-            case .success(let response):
-                self.car = response
+                case .failure(let error):
+                    self.alertMessage = error.message
+                    self.showsAlert = true
+                    
+                case .success(let response):
+                    self.car = response
+                    self.command.send(.didAddCarData)
+                    
             }
         }
     }
@@ -103,14 +114,23 @@ class CarDetailViewModel: ObservableObject, ImageSavingProtocol {
             return
         }
         let fileName = "car_img.jpg"
-
+        
         do {
             _ = try self.save(imageData: data, withName: fileName)
             self.imageData = data
         } catch let error  {
             print(error)
         }
-
+        
     }
 }
 
+
+// MARK: - Supporting Structs
+
+extension CarDetailViewModel {
+    
+    enum Command {
+        case didAddCarData
+    }
+}

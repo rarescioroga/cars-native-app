@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
 
 class LoginViewModel: ObservableObject {
     
@@ -15,7 +17,8 @@ class LoginViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showsAlert: Bool = false
 
-    
+    let command = PassthroughSubject<Command, Never>()
+
     private var repository: LoginRepository
 
     // MARK: - Lifecycle
@@ -33,8 +36,17 @@ class LoginViewModel: ObservableObject {
                 
             case .success:
                 print("success")
+                self.command.send(.showMainView)
             }
         }
     }
+}
+
+// MARK: - Supporting Structs
+
+extension LoginViewModel {
     
+    enum Command {
+        case showMainView
+    }
 }

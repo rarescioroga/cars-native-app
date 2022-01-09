@@ -15,15 +15,15 @@ enum APIRouter: APIConfiguration {
     case login(request: LoginRequest)
     
     case getCars
-    case updateCar(request: Car, imageData: Data?)
-    case createCar(request: Car, imageData: Data?)
+    case updateCar(request: Car)
+    case createCar(request: Car)
     
     var baseUrl: String {
         switch self {
         case .login:
-            return "http://localhost:3005/api/auth"
+            return "http://192.168.0.217:3005/api/auth"
         default:
-            return "http://localhost:3005/api"
+            return "http://192.168.0.217:3005/api"
         }
     }
     
@@ -46,7 +46,7 @@ enum APIRouter: APIConfiguration {
             return "/login"
         case .getCars:
             return "/car/"
-        case .updateCar(let request, let _):
+        case .updateCar(let request):
             return "/car/\(request.id ?? "")"
         case .createCar:
             return "/car/"
@@ -60,14 +60,7 @@ enum APIRouter: APIConfiguration {
             headers["Authorization"] = "Bearer \(token)"
             print(token)
         }
-        
-        if self.multipartData != nil {
-            headers["Content-Type"] = "multipart/form-data"
-        } else {
-            headers["Content-Type"] = "application/json"
-        }
-        
-        
+        headers["Content-Type"] = "application/json"
         return headers
     }
     
@@ -77,9 +70,9 @@ enum APIRouter: APIConfiguration {
             return request.params
         case .getCars:
             return nil
-        case .updateCar(let request, let _):
+        case .updateCar(let request):
             return request.params
-        case .createCar(let request, let _):
+        case .createCar(let request):
             return request.params
         }
     }
@@ -90,12 +83,7 @@ enum APIRouter: APIConfiguration {
     
     var multipartData: Data? {
         switch self {
-        case .createCar(_, let multipartData):
-            return multipartData
-        case .updateCar(_, let multipartData):
-            return multipartData
         default: return nil
         }
     }
-    
 }
