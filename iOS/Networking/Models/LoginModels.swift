@@ -18,7 +18,7 @@ struct LoginRequest: Encodable {
 
 struct LoginResponse: Codable {
     
-    let expirationDate: String
+    let expirationDate: String?
     let token: String
     let user: User
     

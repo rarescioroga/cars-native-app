@@ -33,7 +33,10 @@ struct CarsListView: View {
                     }
                 }
                 
-                NavigationLink(destination: CarDetailView(viewModel: CarDetailViewModel(car: selectedCar)),
+                NavigationLink(destination: CarDetailView(viewModel: CarDetailViewModel(car: selectedCar), onBack: {
+                    self.showCarDetails = false
+                    self.viewModel.getAllCars()
+                }),
                                isActive: $showCarDetails,
                                label: { EmptyView() } )
             }

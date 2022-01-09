@@ -40,6 +40,11 @@ struct LoginView: View {
                     self.showMainDashboard()
             }
         }
+        .alert(isPresented: $viewModel.showsAlert) {
+            Alert(title: Text("Error"),
+                  message: Text("Wrong credentials"),
+                  dismissButton: .default(Text("ok!")))
+        }
     }
 }
 

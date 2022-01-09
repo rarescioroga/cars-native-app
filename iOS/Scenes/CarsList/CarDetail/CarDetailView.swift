@@ -17,6 +17,7 @@ struct CarDetailView: View {
 
     @State private var imagePickerType: UIImagePickerController.SourceType = .camera
     
+    
     @State var showImagePicker: Bool = false
     @State var showActionSheet: Bool = false
     
@@ -25,9 +26,13 @@ struct CarDetailView: View {
     @State var manager = CLLocationManager()
     @StateObject var managerDelegate = LocationDelegate()
     
-    init(viewModel: CarDetailViewModel) {
+    let onBack: () -> Void
+
+    
+    init(viewModel: CarDetailViewModel, onBack: @escaping () -> Void) {
         self.viewModel = viewModel
         self.imageLoader = ImageLoader(urlString: viewModel.car?.imageUrl ?? "")
+        self.onBack = onBack
     }
     
     @ObservedObject private var imageLoader: ImageLoader
@@ -67,19 +72,19 @@ struct CarDetailView: View {
                     
                     TextField("Brand", text: $viewModel.brand)
                         .foregroundColor(.black)
-                    
+
                     Text("Model")
                         .foregroundColor(.gray)
                         .font(.subheadline)
-                    
+
                     TextField("Model", text: $viewModel.model)
                         .foregroundColor(.black)
-                    
                     
                     Text("Number of Owners")
                         .foregroundColor(.gray)
                         .font(.subheadline)
-                    
+                        .animation(.easeIn)
+
                     TextField("Number of Owners", text: $viewModel.nrOwners)
                         .keyboardType(.numberPad)
                         .foregroundColor(.black)
@@ -115,7 +120,9 @@ struct CarDetailView: View {
                 }
                 
                 Button {
-                    self.createLocalNotification()
+                    withAnimation {
+                        self.createLocalNotification()
+                    }
                 } label: {
                     Text("Create Notification")
                         .font(.headline)
@@ -132,7 +139,8 @@ struct CarDetailView: View {
         .onReceive(viewModel.command) { (command) in
             switch command {
                 case .didAddCarData:
-                    self.presentationMode.wrappedValue.dismiss()
+                    self.onBack()
+//                    self.presentationMode.wrappedValue.dismiss()
             }
         }
         .onAppear{
