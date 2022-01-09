@@ -12,6 +12,7 @@ struct CarsListView: View {
     @ObservedObject var viewModel: CarsListViewModel = CarsListViewModel()
     @State private var showCarDetails = false
     @State private var selectedCar: Car?
+    @State private var didShakeDevice: Bool = false
     
     var body: some View {
         NavigationView {
@@ -56,6 +57,14 @@ struct CarsListView: View {
         }
         .onAppear {
             viewModel.getAllCars()
+        }
+        .onShake {
+            self.didShakeDevice = true
+        }
+        .alert(isPresented: $didShakeDevice) {
+            Alert(title: Text("Important message"),
+                  message: Text("You Shook the device"),
+                  dismissButton: .default(Text("Got it!")))
         }
         .noInternetModifier()
     }
